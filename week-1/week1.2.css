@@ -43,11 +43,10 @@
     justify-content: center;    
     align-items: center;   
 }
-/* .pixel{
+.pixel{
     width:1200px;
-    width:80%;
-
-} */
+    width:90%;
+}
 .first{
     display:flex;
     /* justify-content:space-between; */
