@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charest="utf-8" />
+    <meta  name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>歡迎光臨</title>
+    <style>
+    .banner{
+    background-color: cornflowerblue;
+    color:white;
+    font-size:50px;
+    text-align:center;
+    padding:40px;
+        }
+    .form{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    }
+    .item{
+        margin:20px;
+    }
+    h4{
+        text-align:center;
+    }
+    .button{
+        text-align:center;
+    }
+    </style>
+
+</head>
+<body>
+    <div class="banner"> 歡迎光臨，請輸入帳號密碼</div>
+    <div class="frame">
+        <form class="form"action="/signin" method="POST"><!--固定語法 action="網址路徑" -->
+            <h4>登入系統</h4>
+            <div class="item">
+                <span>帳號</span>
+                <input type="text" name="account"/>
+            </div>
+            <div class="item">
+                <span>密碼</span>
+                <input type="password" name="password"/>
+            </div>
+            <div class="button"><button>登入</button></div> 
+    </div>
+    </form>
+</body>
+</html>
