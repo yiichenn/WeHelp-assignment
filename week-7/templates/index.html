@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charest="utf-8" />
+    <meta  name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>歡迎光臨</title>
+    <style>
+    .banner{
+    background-color: cornflowerblue;
+    color:white;
+    font-size:30px;
+    text-align:center;
+    padding:40px;
+        }
+    .form1{
+    position:absolute;
+    top:40%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    }
+    /* .form2{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    } */
+    hr{
+    margin-top:230PX;    
+    }
+    .item{
+        margin:15px;
+    }
+    .item2{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:10px;
+    }
+    span{
+        margin:5px;
+    }
+    .number{
+    margin-right:7px;
+    }
+    h4{
+        text-align:center;
+    }
+    .button{
+        text-align:center;
+    }
+    </style>
+
+</head>
+<body>
+    <div class="banner"> 歡迎光臨，請註冊登入系統</div>
+    
+    <div class="frame"><!--如果要用 POST 方法，就兩邊都要記得寫。-->
+        <form class="form1"action="/signup" method="POST"><!--固定語法 action="網址路徑" -->
+            <h4>註冊帳號</h4>
+            <div class="item">
+                <span>姓名</span>
+                <input type="text" name="name"/>
+            </div>
+            <div class="item">
+                <span>帳號</span>
+                <input type="text" name="username"/>
+            </div>
+            <div class="item">
+                <span>密碼</span>
+                <input type="password" name="password"/>
+            </div>
+            <div class="button"><button>註冊</button></div> 
+        </form>
+    </div>
+    <hr>
+    <!-- <div class="frame">
+        <form class=form2 action="/square">
+            <h4>登入系統</h4>
+            <div class="item2">
+                <span class="number">帳號</span>
+                <input type="text" name="number"/>
+            </div>
+            <div class="item2">
+                <span class="number">密碼</span>
+                <input type="text" name="number"/>
+            </div>
+            <div class="button"><button>登入</button></div> 
+        </form>
+    </div> -->
+
+    <div class="frame"><!--如果要用 POST 方法，就兩邊都要記得寫。-->
+        <form class="form2"action="/signin" method="POST"><!--固定語法 action="網址路徑" -->
+            <h4>登入系統</h4>
+            <div class="item2">
+                <span>帳號</span>
+                <input type="text" name="account"/>
+            </div>
+            <div class="item2">
+                <span>密碼</span>
+                <input type="password" name="password"/>
+            </div>
+            <div class="button"><button>登入</button></div> 
+        </form>
+    </div>
+    <script>
+        fetch('/api/member')
+        .then(function (response) {
+            return response.json();
+        }).then(function (text) {
+            console.log('GET response:');
+            console.log(text.greeting); 
+        });
+        </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charest="utf-8" />
+    <meta  name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>歡迎光臨</title>
+    <style>
+    .banner{
+    background-color: cornflowerblue;
+    color:white;
+    font-size:30px;
+    text-align:center;
+    padding:40px;
+        }
+    .form{
+    color: black;
+    font-size:25px;
+    position:absolute;
+    top:45%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    }
+    .form1{
+    color: black;
+    font-size:25px;
+    position:absolute;
+    top:60%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    }
+    .form2{
+    color: black;
+    font-size:25px;
+    position:absolute;
+    top:80%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    }
+
+    </style>
+
+</head>
+<body>
+    <div class="banner">歡迎光臨，這是會員頁<div>
+    <div class="form">
+        <div>{{name}}，歡迎登入系統</div>
+        <div><a href="/signout">登出系統</a></div>
+    </div>
+    
+    <form class="form1"action="/api/member" method="GET">
+        <div>查詢會員帳號</div>
+        <div class="item">
+            <input type="text" name="username" id="username"/>
+            <input type='button' value='查詢' onclick='getData();' />
+            <div id="result"> </div>
+        </div>
+    </form>
+
+    <div class="form2"action="/api/member"  method="PATCH">
+        <div>更新會員姓名</div>
+        <div class="item">
+            <input type="text" name="rename" id="rename"/>
+            <input type='button' value='更新' onclick='submit();' />
+            <div id="newname"> </div>
+        </div>
+    </div>
+
+    <script>
+        function getData(){
+            let usernameElement = document.getElementById("username");
+            let username = usernameElement.value
+            let url = `http://127.0.0.1:3000/api/member?username=${username}`;
+            fetch(url).then(function(response){
+                return response.json();
+            }).then(function(data){
+                
+                let result=document.querySelector("#result");
+
+                if(data["data"] == null){
+                    result.innerHTML+="<div>"+"查詢不到此會員"+"</div>";
+                }else{
+                    let name=data["data"]["name"]
+                    result.innerHTML+="<div>"+data["data"]["name"]+"</div>";
+                }
+            })
+        }
+        
+        function submit(){
+            let renameElement = document.getElementById("rename");
+            let rename = renameElement.value
+            let url = `http://127.0.0.1:3000/api/member`;
+            let entry ={name:rename};
+            fetch(url,{
+            method:"PATCH",
+            headers: new Headers({'Content-Type':'application/json'}),
+            body:JSON.stringify(entry),
+            }).then(function(response){
+                return response.json();
+            }).then(function(data){
+               if (data["ok"]==true){
+                newname.innerHTML+="<div>"+"更新成功"+"</div>";
+               }
+               else{
+                newname.innerHTML+="<div>"+"更新失敗"+"</div>";
+               }
+                
+            })
+        }
+    </script>
+</body>
+</html>
